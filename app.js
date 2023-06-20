@@ -3,9 +3,6 @@ dotenv.config();
 
 const express = require('express');
 const path = require('path');
-const sharp = require('sharp');
-const fs = require('fs');
-const multer = require('multer');
 
 
 const cors = require('cors');
