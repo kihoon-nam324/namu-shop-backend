@@ -113,3 +113,20 @@ server.post('/api/ProductListGetByPage', function(req,res) {
     }
   });
 })
+
+// PRODUCT ITEM UPDATE
+server.put('/api/Product/:no', function(req,res) {
+  let sql = 
+    "UPDATE product SET qty=" +
+    req.body.qty +
+    " WHERE `no`=" +
+    req.body.no;
+
+  db.query(sql, function(error, result) {
+    if (error) { 
+      res.send(error);
+    } else {
+      res.send(result);
+    }
+  });
+});
