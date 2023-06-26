@@ -53,7 +53,7 @@ server.get('/api/Product/:no', function(req,res) {
 
 // PRODUCTLIST GET COUNT
 server.get('/api/ProductListGetCountAll', function(req,res) {
-  let sql = 'SELECT count(*) AS count FROM product';
+  let sql = 'SELECT count(*) AS count FROM product WHERE status=1';
 
   db.query(sql, function (error, result, field) {
     if (error) { 
@@ -100,7 +100,7 @@ server.post('/api/ProductListGetByPage', function(req,res) {
     'FROM ' +
     '( ' +
     'SELECT ROW_NUMBER() OVER(ORDER BY `no` ASC) AS rowNum, product.* ' +
-    'FROM product' +
+    'FROM product WHERE status=1' +
     ') AS tmpProduct ' +
     'WHERE rowNum BETWEEN ' + (body.offset - body.pageSize + 1) + ' AND ' + body.offset + ' ' +
     'ORDER BY rowNum DESC LIMIT ' + body.pageSize;
